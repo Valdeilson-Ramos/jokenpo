@@ -20,7 +20,7 @@ export default class App extends Component {
     var optionRandom = Math.floor(Math.random() * 3)
     return options [optionRandom]
   };
-  reseStates = () => {
+  resetStates = () => {
     this.setState(beginStates)
   }
   changeOption = (optionPlayer) => {
@@ -52,27 +52,30 @@ export default class App extends Component {
           <Text style={styles.textTitle}>JoKenPo</Text>
         </View>
         <View style={styles.scoreBoard}>
-          <Text style={styles.textScoreBoard}> Score </Text>
-          <Text style={styles.textScoreBoard}> {this.scorePlayer} </Text>
+          <View style={styles.score}>
+            <Text style={styles.textScoreBoard}> Score </Text>
+            <Text style={styles.textScoreBoard}> {this.state.scorePlayer} </Text>
+          </View>
+          <View style={styles.score}>
+            <Text style={styles.textScoreBoard}> You </Text>
+            <Text style={styles.textScoreBoard}> 
+            <Icon name={this.state.optionPlayer} size={50} color="#FFF"/> 
+            </Text>
+          </View>
+          <View style={ styles.score}>
+            <Text style={styles.textScoreBoard}> CPU </Text>
+            <Text style={styles.textScoreBoard}>
+            <Icon name={this.state.optionPc} size={50} color="#FFF" />
+            </Text>
+          </View>
+          <View style={styles.score}>
+            <Text style={styles.textScoreBoard}> Score </Text>
+            <Text style={styles.textScoreBoard}>
+              {this.state.scorePc}
+            </Text>
+          </View>
         </View>
-        <View style={styles.score}>
-          <Text style={styles.textScoreBoard}> You </Text>
-          <Text style={styles.textScoreBoard}> 
-          <Icon name={this.state.optionPlayer} size={50} color="#FFF"/> 
-          </Text>
-        </View>
-        <View style={ styles.score}>
-          <Text style={styles.textScoreBoard}> CPU </Text>
-          <Text style={styles.scoreBoard}>
-          <Icon name={this.state.optionPc} size={50} color="#FFF" />
-          </Text>
-        </View>
-        <View style={styles.score}>
-          <Text style={styles.textScoreBoard}> Score </Text>
-          <Text style={styles.textScoreBoard}>
-            {this.state.scorePc}
-          </Text>
-        </View>
+        <View style={styles.selectionBoard}>
         <View style={styles.viewTitle}>
           <Text style={styles.text}> Escolha uma Opção</Text>
         </View>
@@ -80,16 +83,17 @@ export default class App extends Component {
           <Icon style={styles.option} name="hand-grab-o" size={50} color="#000" onPress={() =>{
             this.changeOption("hand-grab-o")
           }} />
-          <Icon style={styles.option} name="hand-scissors-o" size={50} color="#000" onPress={() =>{
-            this.changeOption("hand-scissors")
-          }} />
           <Icon style={styles.option} name="hand-paper-o" size={50} color="#000" onPress={() =>{
-            this.changeOption("hand-paper")
+            this.changeOption("hand-paper-o")
+          }} />
+          <Icon style={styles.option} name="hand-scissors-o" size={50} color="#000" onPress={() =>{
+            this.changeOption("hand-scissors-o")
           }} />
         </View>
+        </View>
         <View style={styles.viewBtnResetStates}>
-          <Button color="#654eb8" title={'Reiniciar'} onPress={() => {
-            this.reseStates()
+          <Button color="#FFA500" title={'Reiniciar'} onPress={() => {
+            this.resetStates()
           }} />
         </View>
       </View>
@@ -103,7 +107,7 @@ const styles = StyleSheet.create ({
     backgroundColor: '#FFF',
   },
   textTitle: {
-    color: '#000',
+    color: '#8A2BE2',
     fontSize: 45,
     marginBottom: 50,
   },
@@ -112,16 +116,20 @@ const styles = StyleSheet.create ({
     justifyContent: 'center',
   },
   scoreBoard: {
-    backgroundColor: '#654eb8',
+    backgroundColor: '#32CD32',
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
-    height: 150,
+    height: 120,
     margin: 5,
+    
+  },
+  selectionBoard: {
+    paddingTop: 50,
   },
   textScoreBoard: {
     color: 'white',
-    fontSize: 30,
+    fontSize: 25,
   },
   score: {
     alignItems: 'center',
