@@ -26,7 +26,7 @@ export default class App extends Component {
   changeOption = (optionPlayer) => {
     var optionPc = this.changeOptionPc()
     this.setState({ optionPlayer: optionPlayer, optionPc: optionPc})
-    if (optionPlayer == "hand-stone-o" && optionPc == "hand-scissors-o"){
+    if (optionPlayer == "hand-grab-o" && optionPc == "hand-scissors-o"){
       this.setState({ scorePlayer: this.state.scorePlayer + 1 })
     }
     else if (optionPlayer == "hand-grab-o" && optionPc == "hand-paper-o") {
@@ -150,7 +150,7 @@ const styles = StyleSheet.create ({
   },
   viewBtnResetStates: {
     marginHorizontal: 150,
-    marginVertical: 100,
-    borderRadius: 100,
+    marginVertical: 10,
+    borderRadius: 10,
   },
 });
